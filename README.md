@@ -1,12 +1,14 @@
-# Home Page (Meme Templates)
+# Web Pages
+
+## Home Page (Meme Templates)
 
 ![meme-master (1)](https://user-images.githubusercontent.com/66102026/158972808-b7e7ce67-216a-41c0-9721-1192c13a39cd.jpg)
 
-# Meme Template Page
+## Meme Template Page
 
 ![meme-master (2)](https://user-images.githubusercontent.com/66102026/158972909-470e6a5a-88fa-4cf9-82aa-8a2d0b51c595.jpg)
 
-# Downloaded Meme
+## Downloaded Meme
 
 ![Drake Hotline Bling (2)](https://user-images.githubusercontent.com/66102026/158972989-7e75e12a-02ec-4901-87cb-21abd2105f29.jpg)
 
