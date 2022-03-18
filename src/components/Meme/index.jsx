@@ -1,0 +1,101 @@
+import React, { useState } from 'react'
+
+// Styles
+import {
+	Wrapper,
+	Content,
+	Form,
+	Button,
+	Inputs,
+	MemeWrapper,
+	MemeImage,
+	ButtonsWrapper
+} from './Meme.styles'
+
+const Meme = ({ meme, setMeme }) => {
+	const [memeData, setMemeData] = useState({
+		template_id: meme.id,
+		username: 'IMGFLIP_USERNAME',
+		password: 'IMGFLIP_PASSWORD',
+		values: []
+	})
+
+	let url = `https://api.imgflip.com/caption_image?template_id=${memeData.template_id}&username=${memeData.username}&password=${memeData.password}`
+	memeData.values.map((items, index) => (url += `&boxes[${index}][text]=${items.text}`))
+
+	const generateMeme = async e => {
+		e.preventDefault()
+
+		try {
+			const res = await fetch(url, { method: 'POST' })
+			const json = await res.json()
+
+			setMeme({ ...meme, url: json.data.url })
+		} catch (e) {
+			alert('Fill out the captions input')
+		}
+	}
+
+	const inputs = [...Array(meme.box_count)].map((items, index) => {
+		const handleChange = e => {
+			let newValues = memeData.values
+			newValues[index] = { text: e.target.value }
+			setMemeData(prevState => {
+				return {
+					...prevState,
+					values: newValues
+				}
+			})
+		}
+
+		return (
+			<input
+				key={index}
+				name={`input${index}`}
+				placeholder={`Caption ${index + 1}`}
+				onChange={handleChange}
+				value={memeData.values.text}
+			/>
+		)
+	})
+
+	const downloadImage = async imageSrc => {
+		const image = await fetch(imageSrc)
+		const imageBlob = await image.blob()
+		const imageUrl = URL.createObjectURL(imageBlob)
+
+		const link = document.createElement('a')
+		link.href = imageUrl
+		link.download = meme.name
+		document.body.appendChild(link)
+		link.click()
+		document.body.removeChild(link)
+	}
+
+	return (
+		<Wrapper>
+			<Content>
+				<h4>{meme.name}</h4>
+				<MemeWrapper>
+					<MemeImage src={meme.url} />
+				</MemeWrapper>
+				<Form onSubmit={e => e.preventDefault()}>
+					<Inputs className='inputs'>{inputs}</Inputs>
+					<ButtonsWrapper>
+						<Button type='button' onClick={() => setMeme(null)}>
+							Get a new meme template
+						</Button>
+						<Button type='submit' onClick={generateMeme}>
+							Generate Meme
+						</Button>
+						<Button type='submit' onClick={() => downloadImage(meme.url)}>
+							Download Meme
+						</Button>
+					</ButtonsWrapper>
+				</Form>
+			</Content>
+		</Wrapper>
+	)
+}
+
+export default Meme
