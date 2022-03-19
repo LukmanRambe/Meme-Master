@@ -44,7 +44,7 @@ export const Inputs = styled.div`
 		padding: 15px;
 		font-size: 14px;
 		font-weight: 400;
-		color: var(--grey);
+		color: var(--black);
 		line-height: 15px;
 		border: none;
 		border-radius: 7px;

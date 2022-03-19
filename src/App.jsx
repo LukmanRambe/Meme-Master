@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import MemeTemplates from './components/MemeTemplates'
 import Meme from './components/Meme'
 import ScrollToTop from './components/ScrollToTop'
+import Footer from './components/Footer'
 
 // Styles
 import GlobalStyle from './GlobalStyle'
@@ -48,6 +49,7 @@ const App = () => {
 				<Meme meme={meme} setMeme={setMeme} />
 			)}
 			{isVisible && <ScrollToTop />}
+			<Footer />
 			<GlobalStyle />
 		</>
 	)

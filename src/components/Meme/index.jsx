@@ -15,8 +15,8 @@ import {
 const Meme = ({ meme, setMeme }) => {
 	const [memeData, setMemeData] = useState({
 		template_id: meme.id,
-		username: 'IMGFLIP_USERNAME',
-		password: 'IMGFLIP_PASSWORD',
+		username: 'Rambe',
+		password: 'MemeGenerated',
 		values: []
 	})
 
