@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
+// React Router
+import { useNavigate, useParams } from 'react-router-dom'
 
 // Styles
 import {
@@ -13,15 +16,19 @@ import {
 } from './Meme.styles'
 
 const Meme = ({ meme, setMeme }) => {
+	const { id } = useParams()
 	const [memeData, setMemeData] = useState({
-		template_id: meme.id,
+		template_id: id,
 		username: 'Rambe',
 		password: 'MemeGenerated',
 		values: []
 	})
+	const navigate = useNavigate()
 
 	let url = `https://api.imgflip.com/caption_image?template_id=${memeData.template_id}&username=${memeData.username}&password=${memeData.password}`
-	memeData.values.map((items, index) => (url += `&boxes[${index}][text]=${items.text}`))
+	memeData.values.map(
+		(items, index) => (url += `&boxes[${index}][text]=${items.text}`)
+	)
 
 	const generateMeme = async e => {
 		e.preventDefault()
@@ -36,7 +43,7 @@ const Meme = ({ meme, setMeme }) => {
 		}
 	}
 
-	const inputs = [...Array(meme.box_count)].map((items, index) => {
+	const inputs = [...Array(meme.box_count)].map((item, index) => {
 		const handleChange = e => {
 			let newValues = memeData.values
 			newValues[index] = { text: e.target.value }
@@ -72,6 +79,11 @@ const Meme = ({ meme, setMeme }) => {
 		document.body.removeChild(link)
 	}
 
+	const backToHome = () => {
+		setMeme(null)
+		navigate('/')
+	}
+
 	return (
 		<Wrapper>
 			<Content>
@@ -82,7 +94,7 @@ const Meme = ({ meme, setMeme }) => {
 				<Form onSubmit={e => e.preventDefault()}>
 					<Inputs className='inputs'>{inputs}</Inputs>
 					<ButtonsWrapper>
-						<Button type='button' onClick={() => setMeme(null)}>
+						<Button type='button' onClick={backToHome}>
 							Get a new meme template
 						</Button>
 						<Button type='submit' onClick={generateMeme}>

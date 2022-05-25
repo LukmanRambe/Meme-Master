@@ -1,3 +1,11 @@
+# Meme Master
+
+This is meme generator app i have created using ReactJS and ImgFlip API (https://imgflip.com/api).
+
+We can choose our meme template (image), then fill in the words inputs for our meme. In the end, we can download our generated meme.
+
+Hope you enjoy it 😄😄😄
+
 # Web Pages
 
 ## Home Page (Meme Templates)
@@ -11,9 +19,6 @@
 ## Downloaded Meme
 
 ![Drake Hotline Bling (2)](https://user-images.githubusercontent.com/66102026/158972989-7e75e12a-02ec-4901-87cb-21abd2105f29.jpg)
-
-
-
 
 # This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

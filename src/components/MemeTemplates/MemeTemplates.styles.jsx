@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.main`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -40,6 +40,10 @@ export const Content = styled.div`
 `
 
 export const Template = styled.div`
+	a {
+		text-decoration: none;
+	}
+
 	.imgWrapper {
 		height: 100%;
 		display: flex;
